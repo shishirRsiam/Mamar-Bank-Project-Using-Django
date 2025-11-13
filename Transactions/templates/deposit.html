@@ -23,20 +23,20 @@
             <!-- Account -->
             <div class="form-group">
                 <label for="account" class="block text-gray-800 font-medium text-xl">Account</label>
-                <input name="account" id="account" placeholder="Enter Username or email or account number"
+                <input name="account" id="account" placeholder="Enter recipient username or email or Mamar Bank account number"
                     class="w-full px-6 py-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-teal-400 transition duration-300 text-lg" value="{{ request.POST.account }}" step="0.01" required>
             </div>
             <!-- Amount -->
             <div class="form-group">
                 <label for="amount" class="block text-gray-800 font-medium text-xl">Amount</label>
-                <input type="number" name="amount" id="amount" 
+                <input type="number" name="amount" id="amount" placeholder="Enter amount"
                     class="w-full px-6 py-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-teal-400 transition duration-300 text-lg" value="{{ request.POST.amount }}" step="0.01" required>
             </div>
 
             <!-- Description (Optional) -->
             <div class="form-group">
                 <label for="description" class="block text-gray-800 font-medium text-xl">Note (Optional)</label>
-                <textarea name="description" id="description" class="w-full px-6 py-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-teal-400 transition duration-300 text-lg">{{ request.POST.description }}</textarea>
+                <textarea placeholder="Enter a note (Optional)" name="description" id="description" class="w-full px-6 py-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-4 focus:ring-teal-400 transition duration-300 text-lg">{{ request.POST.description }}</textarea>
             </div>
 
             <button type="submit" class="w-full py-3 px-6 bg-teal-500 text-white font-semibold rounded-lg hover:bg-teal-600 transition duration-300 transform hover:scale-105 text-xl">

@@ -36,6 +36,14 @@ def deposit(request):
             context['error_msg'] = "Account not found."
             return render(request, 'deposit.html', context)
 
+        if user and request.user == user:
+            context['error_msg'] = "You cannot deposit to your account."
+            return render(request, 'deposit.html', context)
+        
+        if user.is_superuser:
+            context['error_msg'] = "You cannot deposit to admin account."
+            return render(request, 'deposit.html', context)
+
         if user and Decimal(amount) > 0.0:
             user.account.balance += Decimal(amount)
             user.account.save()
