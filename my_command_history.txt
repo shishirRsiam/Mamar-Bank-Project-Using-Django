@@ -1,0 +1,14 @@
+01-11-2025 20:51:26   40  cd Mamar-Bank-Project-Using-Django/
+01-11-2025 20:51:31   41  code .
+01-11-2025 20:51:37   29  python train_model.py 
+01-11-2025 20:52:04   29  python train_model.py 
+01-11-2025 20:52:30   30  docker stop $(docker ps -aq)
+01-11-2025 20:52:40   31  docker rm $(docker ps -aq)
+01-11-2025 20:53:02   32  docker rmi $(docker images -q)
+01-11-2025 20:53:24   33  docker builder prune -a
+01-11-2025 20:53:24   33  docker builder prune -a
+13-11-2025 13:40:56   29  python train_model.py 
+13-11-2025 13:40:58   29  python train_model.py 
+13-11-2025 13:42:39   30  python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+13-11-2025 13:43:15   31  python manage.py 
+13-11-2025 13:49:24   29  python train_model.py 

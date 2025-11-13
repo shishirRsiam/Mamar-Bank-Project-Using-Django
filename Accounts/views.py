@@ -70,7 +70,7 @@ def sign_up(request):
                     user=user,
                     nid_number=nid_number,
                     birth_day=birth_day,
-                    account_no=15052004000 + user.id,
+                    account_no=14052004000 + user.id,
                     account_type=account_type,
                     gender=gender,
                     user_id=user.id 

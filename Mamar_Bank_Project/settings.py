@@ -1,13 +1,14 @@
 from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-from . import credentials
+# from . import credentials
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = credentials.SECRET_KEY
+# SECRET_KEY = credentials.SECRET_KEY
+SECRET_KEY = "iuucfx3)-&34tor_w9g4ls2c^rj*1ov3dgui25pu63qkx_2w+e"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -69,17 +70,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': credentials.DATABASE_NAME,       # Your database name
-#         'USER': credentials.DATABASE_USER,      # Your PostgreSQL username
-#         'PASSWORD': credentials.DATABASE_PASSWORD,    # Your PostgreSQL password
-#         'HOST': 'localhost',     # Set to 'localhost' if running locally
-#         'PORT': '5432',          # Default PostgreSQL port
-#     }
-# }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -119,5 +109,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = credentials.EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = credentials.EMAIL_HOST_PASSWORD
+# EMAIL_HOST_USER = credentials.EMAIL_HOST_USER
+# EMAIL_HOST_PASSWORD = credentials.EMAIL_HOST_PASSWORD
