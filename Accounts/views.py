@@ -8,6 +8,7 @@ from Transactions.models import Transaction
 
 
 def home(request):
+
     if request.user.is_authenticated:
         return render(request, 'base.html')
     
@@ -88,7 +89,8 @@ def sign_up(request):
 
 
 def profile(request):
-    if not request.user.is_authenticated:
+
+    if request.user.is_authenticated:
         return redirect('login')
     
     transactions = request.user.transactions.all().order_by('-id')[:10]

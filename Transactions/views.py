@@ -8,7 +8,7 @@ from . import sent_email
     
 def home(request):
 
-    
+
 
     return render(request, 'home.html')
 
