@@ -3,7 +3,7 @@
 {% block title %}Sign Up | Mamar Bank{% endblock %}
 
 {% block content %}
-<div class="max-w-9xl mx-auto bg-white shadow-lg rounded-3xl p-8 pb-5 my-8">
+<div class="w-full p-8 pb-5 my-8">
     <h2 class="text-3xl font-semibold text-indigo-600 text-center mb-6">Create Your Mamar Bank Account</h2>
     
     <!-- Display error messages if any -->
@@ -41,7 +41,7 @@
         
 
         <!-- NID and Date of Birth -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
                 <label for="nid_number" class="block text-sm font-medium text-gray-700">NID Number</label>
                 <input type="text" id="nid_number" name="nid_number" value="{{ request.POST.nid_number|default_if_none:'' }}" required 
@@ -58,37 +58,36 @@
                     <p class="text-red-500 text-sm mt-1">{{ form_errors.birth_day }}</p>
                 {% endif %}
             </div>
-        </div>
+        </div> -->
 
         
 
         <!-- Address Details in one row with multiple columns -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <div>
+        <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"> -->
+            <!-- <div>
                 <label for="street_address" class="block text-sm font-medium text-gray-700">Street Address</label>
                 <input type="text" id="street_address" name="street_address" value="{{ request.POST.street_address|default_if_none:'' }}" required 
                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 shadow-sm">
-            </div>
+            </div> -->
 
-            <div>
+            <!-- <div>
                 <label for="city" class="block text-sm font-medium text-gray-700">City</label>
                 <input type="text" id="city" name="city" value="{{ request.POST.city|default_if_none:'' }}" required 
                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 shadow-sm">
-            </div>
+            </div> -->
 
-            <div>
+            <!-- <div>
                 <label for="state" class="block text-sm font-medium text-gray-700">State</label>
                 <input type="text" id="state" name="state" value="{{ request.POST.state|default_if_none:'' }}" required 
                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 shadow-sm">
-            </div>
+            </div> -->
 
-            <div>
+            <!-- <div>
                 <label for="postal_code" class="block text-sm font-medium text-gray-700">Postal Code</label>
                 <input type="text" id="postal_code" name="postal_code" value="{{ request.POST.postal_code|default_if_none:'' }}" required 
                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-50 shadow-sm">
-            </div>
-        </div>
-
+            </div> -->
+        <!-- </div> -->
         <!-- Example for Select Inputs -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
@@ -110,6 +109,7 @@
                 </select>
             </div>
         </div>
+
 
         <!-- Username and Email in one row -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">

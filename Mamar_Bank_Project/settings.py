@@ -71,28 +71,28 @@ DATABASES = {
 }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mamar_bank_db',  # Name of your database
-        'USER': 'postgres',  # Username for PostgreSQL
-        'PASSWORD': 'admin',  # Password for PostgreSQL
-        'HOST': 'postgres',  # The hostname of the database service in Docker
-        'PORT': '5432',  # Default PostgreSQL port
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'mamar_bank_db',  # Name of your database
+#         'USER': 'postgres',  # Username for PostgreSQL
+#         'PASSWORD': 'admin',  # Password for PostgreSQL
+#         'HOST': 'postgres',  # The hostname of the database service in Docker
+#         'PORT': '5432',  # Default PostgreSQL port
+#     }
+# }
 
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://redis:6379/1',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        },
-        'TIMEOUT': None,
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://redis:6379/1',
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#         },
+#         'TIMEOUT': None,
+#     }
+# }
 
 
 # Password validation
