@@ -90,7 +90,7 @@ def sign_up(request):
 
 def profile(request):
 
-    if request.user.is_authenticated:
+    if not request.user.is_authenticated:
         return redirect('login')
     
     transactions = request.user.transactions.all().order_by('-id')[:10]
