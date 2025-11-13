@@ -7,12 +7,13 @@ from django.utils.html import strip_tags
 
 def email_sent(user, subject, html_message):
     print("(-)"*30)
-
+    from_email = 'Mamar Bank <noreply@your.mamarbank.com>'
+    recipient = f"{user.first_name} {user.last_name} <{user.email}>"
     email = EmailMultiAlternatives(
         subject=subject,
         body=html_message,
-        from_email='your.mamarbank@gmail.com',
-        to=[user.email]
+        from_email=from_email,
+        to=[recipient]
     )
     email.attach_alternative(html_message, 'text/html')
 
