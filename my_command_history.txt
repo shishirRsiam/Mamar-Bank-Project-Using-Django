@@ -53,3 +53,22 @@
 13-11-2025 19:46:00   53  deactivate
 13-11-2025 19:46:04   54  docker compose up
 13-11-2025 19:46:24   55  mv DockerFile Dockerfile
+13-11-2025 19:50:10   31  push "fix dockerize error"
+13-11-2025 19:50:48   56  docker compose up
+13-11-2025 20:19:35   57  docker compose up
+13-11-2025 20:38:20   29  python train_model.py 
+13-11-2025 20:38:23   30  docker compose ps
+13-11-2025 20:43:05   58  docker compose up
+13-11-2025 20:43:05   58  docker compose up
+13-11-2025 20:43:05   58  docker compose up
+13-11-2025 20:43:06   58  docker compose up
+13-11-2025 20:43:06   58  docker compose up
+13-11-2025 20:43:06   58  docker compose up
+13-11-2025 20:43:07   58  docker compose up
+13-11-2025 20:43:07   58  docker compose up
+13-11-2025 20:43:07   58  docker compose up
+13-11-2025 20:43:08   58  docker compose up
+13-11-2025 20:43:08   58  docker compose up
+13-11-2025 20:49:55   59  docker compose up
+13-11-2025 21:19:22   60  docker compose up --build
+13-11-2025 21:25:21   31  docker compose ps
