@@ -7,6 +7,9 @@ from decimal import Decimal
 from . import sent_email
     
 def home(request):
+
+    
+
     return render(request, 'home.html')
 
 def deposit(request):
@@ -161,6 +164,7 @@ def approve_loan(request, loan_id):
     
     sent_email.sent_loan_approve_email(loan)
     return redirect('loan_request')
+
 
 def report(request):
     if not request.user.is_authenticated:

@@ -19,11 +19,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-
-RUN dos2unix /*.sh
-RUN dos2unix /scripts/*.sh
-
-
 # Default command
 CMD ["sh", "entrypoint.sh"]
 
