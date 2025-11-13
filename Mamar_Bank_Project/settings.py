@@ -70,6 +70,18 @@ DATABASES = {
     }
 }
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mamar_bank_db',  # Name of your database
+        'USER': 'postgres',  # Username for PostgreSQL
+        'PASSWORD': 'admin',  # Password for PostgreSQL
+        'HOST': 'postgres',  # The hostname of the database service in Docker
+        'PORT': '5432',  # Default PostgreSQL port
+    }
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
