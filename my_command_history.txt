@@ -36,3 +36,20 @@
 13-11-2025 19:23:36   36  python manage.py runserver
 13-11-2025 19:23:42   37  docker compose up
 13-11-2025 19:23:47   38  docker compose up --build
+13-11-2025 19:26:31   30  push "dockerize done"
+13-11-2025 19:30:42   39  docker compose up --build
+13-11-2025 19:31:12   40  docker compose up --build
+13-11-2025 19:31:27   41  docker compose up --build
+13-11-2025 19:32:57   42  docker compose up --build
+13-11-2025 19:33:13   43  docker compose up --build
+13-11-2025 19:34:40   44  docker compose up --build
+13-11-2025 19:35:13   45  docker compose up --build
+13-11-2025 19:35:40   46  docker compose up --build
+13-11-2025 19:37:20   48  chmod +x entrypoint.sh
+13-11-2025 19:37:28   49  docker compose up --build
+13-11-2025 19:45:10   50  docker compose up --build
+13-11-2025 19:45:18   51  docker compose up
+13-11-2025 19:45:50   52  ls | grep -i docker
+13-11-2025 19:46:00   53  deactivate
+13-11-2025 19:46:04   54  docker compose up
+13-11-2025 19:46:24   55  mv DockerFile Dockerfile
