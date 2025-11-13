@@ -22,3 +22,4 @@
 13-11-2025 14:26:44   33  push "setup app password done"
 13-11-2025 14:37:55   34  push "update email sent with user name and company name"
 13-11-2025 14:41:50   29  python train_model.py 
+13-11-2025 14:42:12   30  push "move deposite option from user"
