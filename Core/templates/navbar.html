@@ -26,15 +26,15 @@
                     <a href="{% url 'loan_request' %}" class="text-white font-semibold px-4 py-2 rounded-md bg-indigo-500 hover:bg-indigo-400 hover:shadow-md transition">
                         View Loan Request
                     </a>
+                    <a href="{% url 'deposit' %}" class="text-white font-semibold px-4 py-2 rounded-md bg-indigo-500 hover:bg-indigo-400 hover:shadow-md transition">
+                        Deposit
+                    </a>
                 {% else %}
                     <p class="text-white font-semibold px-4 py-2 rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg transition">
                         Balance: ${{ user.account.balance }}
                     </p>
                     <a href="{% url 'loan' %}" class="text-white font-semibold px-4 py-2 rounded-md bg-indigo-500 hover:bg-indigo-400 hover:shadow-md transition">
                         Loan
-                    </a>
-                    <a href="{% url 'deposit' %}" class="text-white font-semibold px-4 py-2 rounded-md bg-indigo-500 hover:bg-indigo-400 hover:shadow-md transition">
-                        Deposit
                     </a>
                     <a href="{% url 'withdrow' %}" class="text-white font-semibold px-4 py-2 rounded-md bg-indigo-500 hover:bg-indigo-400 hover:shadow-md transition">
                         Withdrow
