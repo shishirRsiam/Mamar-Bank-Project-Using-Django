@@ -14,6 +14,7 @@ def generate_transaction_id():
 
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')
+    admin_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='admin_transactions', null=True, blank=True)
 
     transaction_type = models.CharField(max_length=50)
     amount = models.DecimalField(max_digits=12, decimal_places=2)

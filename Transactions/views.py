@@ -15,18 +15,43 @@ def home(request):
 def deposit(request):
     context = {}
     if request.method == 'POST':
+        account = request.POST['account']
         amount = request.POST['amount']
         description = request.POST['description']
         print(amount, description)
 
-        if Decimal(amount) > 0.0:
-            request.user.account.balance += Decimal(amount)
-            request.user.account.save()
+        user = None
+        try:
+            account = int(account)
+            print("account", account)
+            bank_account = UserBankAccount.objects.get(account_no=account)
+            print("account", account)
+            user = bank_account.user
+            print("user", user)
+        except (ValueError, UserBankAccount.DoesNotExist):
+            user = User.objects.filter(email=account).first()
+            print("user", user)
+        
+        if not user:
+            user = User.objects.filter(username=account).first()
+            print("user", user)
+
+        # print(user)
+        # if not user:
+        #     user = User.objects.filter(email=account) or User.objects.filter(username=account)
+        print(user)
+        if not user:
+            context['error_msg'] = "Account not found."
+            return render(request, 'deposit.html', context)
+
+        if user and Decimal(amount) > 0.0:
+            user.account.balance += Decimal(amount)
+            user.account.save()
             Deposit = Transaction.objects.create(
-                user=request.user,
                 transaction_type='Deposit',
+                user=user, admin_user=request.user,
                 amount=amount, description=description, status=1,
-                after_transaction_balance=request.user.account.balance
+                after_transaction_balance=user.account.balance
             )
             Deposit.save()
             sent_email.sent_deposit_confirmation_email(Deposit)
