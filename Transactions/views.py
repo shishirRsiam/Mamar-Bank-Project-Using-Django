@@ -7,10 +7,19 @@ from decimal import Decimal
 from . import sent_email
     
 def home(request):
-
-
-
     return render(request, 'home.html')
+
+def get_user_by_email_or_username_or_account_no(account):
+    user = None
+    try:
+        account = int(account)
+        bank_account = UserBankAccount.objects.get(account_no=account)
+        return bank_account.user
+    except (ValueError, UserBankAccount.DoesNotExist):
+        user = User.objects.filter(email=account).first()
+    if not user:
+        user = User.objects.filter(username=account).first()
+    return user
 
 def deposit(request):
     context = {}
@@ -18,28 +27,11 @@ def deposit(request):
         account = request.POST['account']
         amount = request.POST['amount']
         description = request.POST['description']
+
         print(amount, description)
-
-        user = None
-        try:
-            account = int(account)
-            print("account", account)
-            bank_account = UserBankAccount.objects.get(account_no=account)
-            print("account", account)
-            user = bank_account.user
-            print("user", user)
-        except (ValueError, UserBankAccount.DoesNotExist):
-            user = User.objects.filter(email=account).first()
-            print("user", user)
-        
-        if not user:
-            user = User.objects.filter(username=account).first()
-            print("user", user)
-
-        # print(user)
-        # if not user:
-        #     user = User.objects.filter(email=account) or User.objects.filter(username=account)
+        user = get_user_by_email_or_username_or_account_no(account)
         print(user)
+        
         if not user:
             context['error_msg'] = "Account not found."
             return render(request, 'deposit.html', context)
@@ -70,7 +62,7 @@ def withdrow(request):
 
         context['error_msg'] = "Invalid amount"
         if Decimal(amount) > 0.0:
-            if request.user.account.balance >= Decimal(amount):
+            if request.user.account.balance >= Decimal(amount) + 1:
                 request.user.account.balance -= Decimal(amount)
                 request.user.account.save()
                 Withdrawal = Transaction.objects.create(
@@ -83,7 +75,7 @@ def withdrow(request):
                 sent_email.sent_withdow_confirmation_email(Withdrawal)
                 return redirect('report')
             
-            context['error_msg'] = "Insufficient balance"
+            context['error_msg'] = "Insufficient balance! You can withdraw only $" + str(request.user.account.balance - 1)
         
     return render(request, 'withdrow.html', context)
 
@@ -98,13 +90,12 @@ def sent_money(request):
         context['error_msg'] = "Invalid amount"
         if Decimal(amount) > 0.0:
 
-            context['error_msg'] = "Insufficient balance"
-            if request.user.account.balance >= Decimal(amount):
+            context['error_msg'] = "Insufficient balance! You can transfer only $" + str(request.user.account.balance - 1)
+            if request.user.account.balance >= Decimal(amount) + 1:
 
                 context['error_msg'] = "Account not found."
-                if recipient.isdigit() and UserBankAccount.objects.filter(account_no=int(recipient)).exists():
-                    ReceiverUser = UserBankAccount.objects.get(account_no=int(recipient)).user
-
+                ReceiverUser = get_user_by_email_or_username_or_account_no(recipient)
+                if ReceiverUser:
                     context['error_msg'] = "You cannot transfer money to your account."
                     if ReceiverUser != request.user:
                         request.user.account.balance -= Decimal(amount)
