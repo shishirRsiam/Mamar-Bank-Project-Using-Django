@@ -5,11 +5,13 @@ from .models import UserAddress, UserBankAccount
 
 from Transactions import sent_email
 from Transactions.models import Transaction
-
+from Transactions.tasks import check_daily_bonus
 
 def home(request):
 
     if request.user.is_authenticated:
+        if not request.user.is_superuser:
+            check_daily_bonus(request.user.id)
         return render(request, 'base.html')
     
     return render(request, 'home.html')
@@ -109,6 +111,8 @@ def profile(request):
         'transactions' : transactions,
     }
 
+    if not request.user.is_superuser:
+        check_daily_bonus(request.user.id)
     return render(request, 'profile.html', context)      
 
 

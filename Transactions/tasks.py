@@ -1,11 +1,11 @@
 # Email_Sent/tasks.py
-from celery import shared_task
 import time
-from django.utils import timezone
-from django.core.cache import cache
+from . import sent_email
+from celery import shared_task
 from .models import Transaction
 from Accounts.models import User
-from . import sent_email
+from django.utils import timezone
+from django.core.cache import cache
 
 @shared_task
 def send_welcome_email(user_id):
@@ -40,11 +40,10 @@ def get_next_day_remain_minute():
     return current_local_time, int(next_day_minute_remain * 60)
 
 
-from django.core.cache import cache
+
 
 def check_daily_bonus(user_id):
     print()
-
 
     key = f'daily_bonus_{user_id}'
     print(f"check_daily_bonus: {user_id}")

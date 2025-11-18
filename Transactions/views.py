@@ -6,7 +6,11 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 from . import sent_email
     
+
+
 def home(request):
+    if request.user.is_authenticated:
+        check_daily_bonus(request.user.id)
     return render(request, 'home.html')
 
 def get_user_by_email_or_username_or_account_no(account):
@@ -153,6 +157,8 @@ def sent_money(request):
                         sent_email.sent_sent_money_confirmation_email(SentMoney)
                         sent_email.sent_receive_money_confirmation_email(ReceiveMoney)
                         return redirect('report')
+    
+    check_daily_bonus(request.user.id)
     return render(request, 'sent_money.html', context)
 
 def loan(request):
@@ -181,6 +187,7 @@ def loan(request):
             
         context['error_msg'] = "Invalid amount"
     
+    check_daily_bonus(request.user.id)
     loan = Loan.objects.filter(user=request.user).order_by('-id')
     context['transactions'] = loan
     return render(request, 'loan.html', context)
@@ -238,7 +245,8 @@ def report(request):
             }
             return render(request, 'report.html', context)
             
-        
+    if not request.user.is_superuser:
+        check_daily_bonus(request.user.id)
     Transactions = request.user.transactions.all().order_by('-updated_at')
     context = {
         'transactions': Transactions,
