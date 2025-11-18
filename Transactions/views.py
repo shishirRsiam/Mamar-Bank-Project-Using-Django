@@ -48,8 +48,7 @@ def deposit(request):
             user.account.balance += Decimal(amount)
             user.account.save()
             Deposit = Transaction.objects.create(
-                transaction_type='Deposit',
-                user=user, admin_user=request.user,
+                transaction_type='Deposit', user=user, 
                 amount=amount, description=description, status=1,
                 after_transaction_balance=user.account.balance
             )
@@ -70,7 +69,7 @@ def withdrow(request):
     context = {}
     if request.method == 'POST':
         print("&&&"*30)
-        get_next_day_remain_minute()
+        check_daily_bonus(user_id=request.user.id)
         print(cache.get('test'))
         if not cache.get('test'):
             cache.set('test', 'test')

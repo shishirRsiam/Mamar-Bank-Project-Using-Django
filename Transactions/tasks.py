@@ -3,6 +3,8 @@ from celery import shared_task
 import time
 from django.utils import timezone
 from django.core.cache import cache
+from .models import Transaction
+from Accounts.models import User
 
 
 @shared_task
@@ -41,5 +43,21 @@ def get_next_day_remain_minute():
 from django.core.cache import cache
 
 def check_daily_bonus(user_id):
-    next_day_remain_minute = get_next_day_remain_minute
-    cache.set(f'daily_bonus_{user_id}', True, 24 * 60 * 60)
+    next_day_remain_minute = get_next_day_remain_minute()
+    key = 'daily_bonus_{user_id}'
+    print(f"check_daily_bonus: {user_id}")
+    if not cache.get(key):
+        # cache.set(key, next_day_remain_minute)
+
+
+        user = User.objects.get(id=user_id)
+        user.account.balance += 100
+        user.account.save()
+        
+        DailyBonus = Transaction.objects.create(
+            transaction_type='Daily Bonus', user=user, 
+            amount=100, description="Daily Check Bonus", status=1,
+            after_transaction_balance=user.account.balance
+        )
+        DailyBonus.save()
+        print("Daily Bonus Added Successfully!")
