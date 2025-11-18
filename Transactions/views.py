@@ -56,7 +56,7 @@ def deposit(request):
             user.account.balance += Decimal(amount)
             user.account.save()
             Deposit = Transaction.objects.create(
-                transaction_type='Deposit', user=user, 
+                transaction_type='Deposit', user=user, admin_user=request.user,
                 amount=amount, description=description, status=1,
                 after_transaction_balance=user.account.balance
             )
