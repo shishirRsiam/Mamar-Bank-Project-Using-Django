@@ -121,7 +121,7 @@
           <li><strong>Note:</strong> {{ deposit.description }}</li>
           {% endif %}
           <li><strong>Transaction ID:</strong> {{ deposit.transaction_id }}</li>
-          <li><strong>Deposit Date:</strong> {{ deposit.created_at|date:"d M Y - h:i:s A" }}</li>
+          <li><strong>Deposit Date:</strong> {{ deposit.updated_at|date:"d M Y - h:i:s A" }}</li>
           <li><strong>Account Balance:</strong> ${{ user.account.balance }}</li>
         </ul>
       </div>

@@ -36,7 +36,7 @@
                                 <td class="border border-gray-300 px-4 py-2">{{ loan.priority }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ loan.purpose }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ loan.repayment_frequency }}</td>
-                                <td class="border border-gray-300 px-4 py-2">{{ loan.created_at|date:"d M Y" }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ loan.updated_at|date:"d M Y" }}</td>
                                 <td class="flex border border-gray-300 px-4 py-2">
                                     <!-- Approve and Reject buttons -->
                                     <form action="{% url 'approve_loan' loan.id %}" method="POST" class="inline-block">
