@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.core.cache import cache
 from .models import Transaction
 from Accounts.models import User
-
+from . import sent_email
 
 @shared_task
 def send_welcome_email(user_id):
@@ -45,8 +45,8 @@ from django.core.cache import cache
 def check_daily_bonus(user_id):
     key = 'daily_bonus_{user_id}'
     print(f"check_daily_bonus: {user_id}")
-    if cache.get(key):
-        return
+    # if cache.get(key):
+    #     return
     
     next_day_remain_minute = get_next_day_remain_minute()
     cache.set(key, next_day_remain_minute)
@@ -62,7 +62,9 @@ def check_daily_bonus(user_id):
     )
     DailyBonus.save()
 
+
+
     # Sent Daily Bonus Email
-    # sent_email.sent_daily_bonus_email(DailyBonus)
+    sent_email.sent_daily_bonus_email(DailyBonus)
 
     print("Daily Bonus Added Successfully!")

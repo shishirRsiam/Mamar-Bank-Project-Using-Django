@@ -67,9 +67,9 @@ from django.utils import timezone
 from django.core.cache import cache
 def withdrow(request):
     context = {}
+    check_daily_bonus(user_id=request.user.id)
     if request.method == 'POST':
         print("&&&"*30)
-        check_daily_bonus(user_id=request.user.id)
         # send_welcome_email.delay(1)
         print("&&&"*30)
         amount = request.POST['amount']

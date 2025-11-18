@@ -47,6 +47,19 @@ def sent_withdow_confirmation_email(withdrawal):
     html_message = render_to_string(template, {'user': withdrawal.user, 'withdrawal': withdrawal})
     email_sent(withdrawal.user, subject, html_message)
 
+def sent_daily_bonus_email(DailyBonus):
+    template = 'email_templates/daily_bonus_email_tamplates.html'
+    subject = f"Daily Bonus Credited: ${DailyBonus.amount} - Transaction ID: {DailyBonus.transaction_id}"
+    
+    # context = {
+    #     'user' : DailyBonus.user,
+    #     'transaction' : DailyBonus,
+    #     'bonus_amount' : DailyBonus.amount,
+    #     'bonus_date' : DailyBonus.date
+    # }
+    # html_message = render_to_string(template, context)
+    # email_sent(DailyBonus.user, subject, html_message)
+
 def sent_sent_money_confirmation_email(sent_money):
     template = 'email_templates/sent_money_confirmation_email_template.html'
     subject = f"Confirmation: You've Sent ${sent_money.amount} to {sent_money.receiver.first_name} {sent_money.receiver.last_name}"
