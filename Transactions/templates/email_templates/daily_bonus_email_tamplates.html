@@ -119,7 +119,7 @@
                     <li><strong>Account Number:</strong> {{ user.account.account_no }}</li>
                     <li><strong>Bonus Amount:</strong> ${{ bonus_amount }}</li>
                     <li><strong>New Balance:</strong> ${{ user.account.balance }}</li>
-                    <li><strong>Date:</strong> {{ bonus_date }}</li>
+                    <li><strong>Date:</strong> {{ bonus_date|date:"d M Y - h:i:s A" }}</li>
                 </ul>
             </div>
 

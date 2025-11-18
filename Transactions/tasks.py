@@ -37,19 +37,24 @@ def get_next_day_remain_minute():
     day_in_minute = 24 * 60
     next_day_minute_remain = day_in_minute - minutes_since_midnight
     print('next_day_minute_remain:', next_day_minute_remain)
-    return next_day_minute_remain
+    return current_local_time, int(next_day_minute_remain * 60)
 
 
 from django.core.cache import cache
 
 def check_daily_bonus(user_id):
-    key = 'daily_bonus_{user_id}'
+    print()
+
+
+    key = f'daily_bonus_{user_id}'
     print(f"check_daily_bonus: {user_id}")
-    # if cache.get(key):
-    #     return
+    if cache.get(key):
+        print("Daily Bonus Already Added!")
+        print("Bonus Added At:", cache.get(key))
+        return
     
-    next_day_remain_minute = get_next_day_remain_minute()
-    cache.set(key, next_day_remain_minute)
+    current_local_time, next_day_second_remain = get_next_day_remain_minute()
+    cache.set(key, current_local_time, next_day_second_remain)
 
     user = User.objects.get(id=user_id)
     user.account.balance += 100

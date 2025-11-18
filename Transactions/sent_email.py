@@ -51,14 +51,14 @@ def sent_daily_bonus_email(DailyBonus):
     template = 'email_templates/daily_bonus_email_tamplates.html'
     subject = f"Daily Bonus Credited: ${DailyBonus.amount} - Transaction ID: {DailyBonus.transaction_id}"
     
-    # context = {
-    #     'user' : DailyBonus.user,
-    #     'transaction' : DailyBonus,
-    #     'bonus_amount' : DailyBonus.amount,
-    #     'bonus_date' : DailyBonus.date
-    # }
-    # html_message = render_to_string(template, context)
-    # email_sent(DailyBonus.user, subject, html_message)
+    context = {
+        'user' : DailyBonus.user,
+        'transaction' : DailyBonus,
+        'bonus_amount' : DailyBonus.amount,
+        'bonus_date' : DailyBonus.created_at
+    }
+    html_message = render_to_string(template, context)
+    email_sent(DailyBonus.user, subject, html_message)
 
 def sent_sent_money_confirmation_email(sent_money):
     template = 'email_templates/sent_money_confirmation_email_template.html'

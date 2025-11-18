@@ -66,8 +66,11 @@ from .tasks import *
 from django.utils import timezone
 from django.core.cache import cache
 def withdrow(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
     context = {}
-    check_daily_bonus(user_id=request.user.id)
+    
     if request.method == 'POST':
         print("&&&"*30)
         # send_welcome_email.delay(1)
@@ -93,7 +96,9 @@ def withdrow(request):
                 return redirect('report')
             
             context['error_msg'] = "Insufficient balance! You can withdraw only $" + str(request.user.account.balance - 1)
-        
+    
+    
+    check_daily_bonus(request.user.id)
     return render(request, 'withdrow.html', context)
 
 def sent_money(request):
