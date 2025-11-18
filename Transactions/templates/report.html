@@ -90,7 +90,7 @@
                     <tbody>
                         {% for transaction in transactions %}
                             <tr class="hover:bg-gray-50">
-                                <td class="border border-gray-300 px-4 py-2">{{ transaction.created_at|date:"d M Y - h:i:s A" }}</td>
+                                <td class="border border-gray-300 px-4 py-2">{{ transaction.updated_at|date:"d M Y - h:i:s A" }}</td>
                                 <td class="border border-gray-300 px-4 py-2">{{ transaction.transaction_type }}</td>
                                 <td class="border border-gray-300 px-4 py-2">
                                     {% if transaction.after_transaction_balance %}

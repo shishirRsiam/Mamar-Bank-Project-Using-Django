@@ -104,7 +104,7 @@ def profile(request):
     if not request.user.is_authenticated:
         return redirect('login')
     
-    transactions = request.user.transactions.all().order_by('-id')[:10]
+    transactions = request.user.transactions.all().order_by('-updated_at')[:10]
     context = {
         'transactions' : transactions,
     }

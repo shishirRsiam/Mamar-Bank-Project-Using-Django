@@ -231,7 +231,7 @@ def report(request):
             return render(request, 'report.html', context)
             
         
-    Transactions = request.user.transactions.all().order_by('-id')
+    Transactions = request.user.transactions.all().order_by('-updated_at')
     context = {
         'transactions': Transactions,
     }
