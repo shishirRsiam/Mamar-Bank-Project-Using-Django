@@ -14,6 +14,10 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     && rm -rf /var/lib/apt/lists/*
 
+
+RUN apt-get update && apt-get install -y postgresql-client && apt-get clean
+
+
 # Copy and install Python dependencies
 COPY requirements.txt .
 # RUN pip3 install psycopg2

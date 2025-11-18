@@ -61,9 +61,12 @@ def deposit(request):
 
     return render(request, 'deposit.html', context)
 
+
+from . import tasks
 def withdrow(request):
     context = {}
     if request.method == 'POST':
+        tasks.send_welcome_email(1)
         amount = request.POST['amount']
         description = request.POST['description']
         print(amount, description)
