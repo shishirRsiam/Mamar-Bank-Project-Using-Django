@@ -71,28 +71,30 @@ DATABASES = {
 }
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'mamar_bank_db',  # Name of your database
-#         'USER': 'postgres',  # Username for PostgreSQL
-#         'PASSWORD': 'admin',  # Password for PostgreSQL
-#         'HOST': 'postgres',  # The hostname of the database service in Docker
-#         'PORT': '5432',  # Default PostgreSQL port
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mamar_bank_db',  # Name of your database
+        'USER': 'postgres',  # Username for PostgreSQL
+        'PASSWORD': 'admin',  # Password for PostgreSQL
+        'HOST': 'postgres',  # The hostname of the database service in Docker
+        'PORT': '5432',  # Default PostgreSQL port
+    }
+}
 
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django_redis.cache.RedisCache',
-#         'LOCATION': 'redis://redis:6379/1',
-#         'OPTIONS': {
-#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-#         },
-#         'TIMEOUT': None,
-#     }
-# }
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+        'TIMEOUT': None,
+    }
+}
+
+
 
 
 # Password validation
@@ -144,3 +146,11 @@ import os
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
+
+
+# Celery configuration
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'

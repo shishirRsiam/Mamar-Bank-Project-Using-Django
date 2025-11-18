@@ -74,8 +74,19 @@ def sign_up(request):
                     account_no=14052004000 + user.id,
                     account_type=account_type,
                     gender=gender,
-                    user_id=user.id 
+                    user_id=user.id, 
                 ).save()
+
+                amount = 1000
+                description = f'Account created successfully.  Account number: {user.account.account_no}'
+
+                Transaction.objects.create(
+                    user=user,
+                    transaction_type='SignUp Bonus',
+                    amount=amount, description=description, status=1,
+                    after_transaction_balance=user.account.balance
+                ).save()
+
                 sent_email.sent_account_create_email(user)
                 request.session['success_message'] = 'Account created successfully. Please log in.'
                 return redirect('login')

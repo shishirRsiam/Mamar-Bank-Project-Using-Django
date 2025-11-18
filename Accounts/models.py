@@ -19,7 +19,7 @@ class UserBankAccount(models.Model):
     nid_number = models.CharField(max_length=25, null=True, blank=True)
     birth_day = models.DateField(null=True, blank=True)
     account_no = models.BigIntegerField(unique=True)
-    balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    balance = models.DecimalField(max_digits=12, decimal_places=2, default=1000.00)
     account_type = models.CharField(max_length=20)
     gender = models.CharField(max_length=10, choices=constants.GENDER, default='Other')
 
