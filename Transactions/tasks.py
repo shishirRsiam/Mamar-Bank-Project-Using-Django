@@ -43,21 +43,26 @@ def get_next_day_remain_minute():
 from django.core.cache import cache
 
 def check_daily_bonus(user_id):
-    next_day_remain_minute = get_next_day_remain_minute()
     key = 'daily_bonus_{user_id}'
     print(f"check_daily_bonus: {user_id}")
-    if not cache.get(key):
-        # cache.set(key, next_day_remain_minute)
+    if cache.get(key):
+        return
+    
+    next_day_remain_minute = get_next_day_remain_minute()
+    cache.set(key, next_day_remain_minute)
 
+    user = User.objects.get(id=user_id)
+    user.account.balance += 100
+    user.account.save()
+    
+    DailyBonus = Transaction.objects.create(
+        transaction_type='Daily Bonus', user=user, 
+        amount=100, description="Daily Check Bonus", status=1,
+        after_transaction_balance=user.account.balance
+    )
+    DailyBonus.save()
 
-        user = User.objects.get(id=user_id)
-        user.account.balance += 100
-        user.account.save()
-        
-        DailyBonus = Transaction.objects.create(
-            transaction_type='Daily Bonus', user=user, 
-            amount=100, description="Daily Check Bonus", status=1,
-            after_transaction_balance=user.account.balance
-        )
-        DailyBonus.save()
-        print("Daily Bonus Added Successfully!")
+    # Sent Daily Bonus Email
+    # sent_email.sent_daily_bonus_email(DailyBonus)
+
+    print("Daily Bonus Added Successfully!")

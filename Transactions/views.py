@@ -70,11 +70,6 @@ def withdrow(request):
     if request.method == 'POST':
         print("&&&"*30)
         check_daily_bonus(user_id=request.user.id)
-        print(cache.get('test'))
-        if not cache.get('test'):
-            cache.set('test', 'test')
-        
-
         # send_welcome_email.delay(1)
         print("&&&"*30)
         amount = request.POST['amount']
