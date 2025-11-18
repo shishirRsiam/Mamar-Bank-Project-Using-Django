@@ -12,9 +12,9 @@ app = Celery('Mamar_Bank_Project')
 # the configuration object to child processes.
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
-
+from django.conf import settings
 # Explicitly register tasks
-app.autodiscover_tasks()
+app.autodiscover_tasks(lambda: ['Transactions'])
 
 
 

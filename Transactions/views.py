@@ -62,14 +62,26 @@ def deposit(request):
     return render(request, 'deposit.html', context)
 
 
-from . import tasks
+
+from .tasks import *
+from django.utils import timezone
+from django.core.cache import cache
 def withdrow(request):
     context = {}
     if request.method == 'POST':
-        tasks.send_welcome_email(1)
+        print("&&&"*30)
+        get_next_day_remain_minute()
+        print(cache.get('test'))
+        if not cache.get('test'):
+            cache.set('test', 'test')
+        
+
+        # send_welcome_email.delay(1)
+        print("&&&"*30)
         amount = request.POST['amount']
         description = request.POST['description']
-        print(amount, description)
+        print("Withdrawal Amount:", amount)
+        print("Withdrawal Note:", description)
 
         context['error_msg'] = "Invalid amount"
         if Decimal(amount) > 0.0:
