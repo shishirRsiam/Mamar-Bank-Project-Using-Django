@@ -8,7 +8,6 @@ from Transactions.models import Transaction
 from Transactions.tasks import check_daily_bonus
 
 def home(request):
-
     if request.user.is_authenticated:
         if not request.user.is_superuser:
             check_daily_bonus(request.user.id)
@@ -16,6 +15,11 @@ def home(request):
     
     return render(request, 'home.html')
 
+def clear_redis(request):
+    from django.core.cache import cache
+    cache.clear()
+    print("Redis cache cleared.")
+    return redirect('home')
 
 from django.contrib.auth.models import User
 def sign_up(request):
