@@ -23,6 +23,10 @@ def get_user_by_email_or_username_or_account_no(account):
 
 def deposit(request):
     context = {}
+    if not request.user.is_authenticated or not request.user.is_superuser:
+        context['error_msg'] = "Account not found."
+        return redirect('login')
+    
     if request.method == 'POST':
         account = request.POST['account']
         amount = request.POST['amount']
@@ -103,6 +107,8 @@ def withdrow(request):
 
 def sent_money(request):
     context = {}
+    if not request.user.is_authenticated:
+        return redirect('login')
     if request.method == 'POST':
         amount = request.POST['amount']
         description = request.POST['description']
@@ -151,6 +157,8 @@ def sent_money(request):
 
 def loan(request):
     context = {}
+    if not request.user.is_authenticated:
+        return redirect('login')
     if request.method == 'POST':
         amount = request.POST['amount']
         purpose = request.POST['purpose']
