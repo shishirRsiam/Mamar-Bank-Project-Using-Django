@@ -139,6 +139,15 @@ def edit_profile(request):
         return redirect('login')
     
     if request.method == 'POST':
+        context = {}
+        context['error_msg'] = 'Username already exists.'
+        if User.objects.filter(username=request.POST['username']).exists():
+            return render(request, 'edit_profile.html', context)
+
+        context['error_msg'] = 'Email already exists.'
+        if User.objects.filter(email=request.POST['email']).exists():
+            return render(request, 'edit_profile.html', context)
+        
         request.user.username = request.POST['username']
         request.user.email = request.POST['email']
         request.user.first_name = request.POST['first_name']
@@ -146,7 +155,6 @@ def edit_profile(request):
         request.user.save()
         return redirect('profile')
 
-    context = {}
     return render(request, 'edit_profile.html', context)
 
 
