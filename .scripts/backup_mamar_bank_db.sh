@@ -18,10 +18,21 @@ echo -e "╚══════════════════════�
 echo ""
 
 
-docker exec -i postgres pg_dump -U postgres mamar_bank_db > dump.sql
+mkdir -p logs
+mkdir -p .database
+
+
+
+let count_file=$(find .database -maxdepth 1 -type f | wc -l)
+file_name="$((count_file + 1)). $(date +"%d %B %Y")"
+
+
+echo "✅ Backing up 'mamar_bank_db' Database at: $(date +"%d %B %Y - %I:%M:%S %p")" >> logs/logs.txt
+docker exec -i postgres pg_dump -U postgres mamar_bank_db > ./.database/$file_name.sql
 
 
 echo -e "${GREEN}╔════════════════════════════════════════════════════════════════════════╗"
 echo -e "║ 🎉 Backup complete! ${YELLOW}It’s backup o’clock! ⏰                            ${GREEN}║"
 echo -e "║    ${CYAN}Saving mamar_bank_db with love and care. 💕📦                         ${GREEN}║"
 echo -e "╚════════════════════════════════════════════════════════════════════════╝${RESET}"
+

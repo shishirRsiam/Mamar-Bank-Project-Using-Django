@@ -21,9 +21,8 @@ git pull
 
 # Ensure logs directory exists
 mkdir -p logs
-
-# Save commit message to logs/last_update_time.txt
-echo "✅ Update completed at: $(date +"%d %B %Y - %I:%M:%S %p")" > logs/last_update_time.txt
+COMMIT_MESSAGE="🚀 Update completed at: $NOW"
+echo $COMMIT_MESSAGE >> logs/logs.txt
 
 
 echo ""
@@ -32,7 +31,7 @@ git add .
 
 echo ""
 echo -e "${GREEN}💾 Committing changes...${NC}"
-git commit -am "Update Database - $NOW"
+git commit -am "$COMMIT_MESSAGE"
 
 echo ""
 echo -e "${GREEN}📤 Pushing changes...${NC}"
