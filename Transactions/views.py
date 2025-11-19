@@ -209,6 +209,7 @@ def approve_loan(request, loan_id):
     
     loan = Loan.objects.get(id=loan_id)
     loan.status = True
+    loan.admin_user = request.user
     loan.approve_admin = request.user
     loan.user.account.balance += loan.amount
     loan.after_transaction_balance = loan.user.account.balance

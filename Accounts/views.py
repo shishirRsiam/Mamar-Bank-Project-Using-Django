@@ -7,13 +7,8 @@ from Transactions import sent_email
 from Transactions.models import Transaction
 from Transactions.tasks import check_daily_bonus
 
-def home(request):
-    if request.user.is_authenticated:
-        if not request.user.is_superuser:
-            check_daily_bonus(request.user.id)
-        return render(request, 'base.html')
-    
-    return render(request, 'home.html')
+from Mamar_Bank_Project.helper import Helper
+
 
 def clear_redis(request):
     from django.core.cache import cache
@@ -112,14 +107,28 @@ def profile(request):
     if not request.user.is_authenticated:
         return redirect('login')
     
-    transactions = request.user.transactions.all().order_by('-updated_at')[:10]
+    transactions = Helper.get_user_transactions(request.user, max_transactions=10)
+    # transactions = request.user.transactions.all().order_by('-updated_at')[:10]
     context = {
         'transactions' : transactions,
     }
 
     if not request.user.is_superuser:
         check_daily_bonus(request.user.id)
+    print(transactions)
     return render(request, 'profile.html', context)      
+
+
+def home(request):
+    if request.user.is_authenticated:
+        if not request.user.is_superuser:
+            check_daily_bonus(request.user.id)
+        return render(request, 'base.html')
+    
+    # return render(request, 'profile.html', context)    
+    return profile(request)
+    # return render(request, 'home.html')
+
 
 
 def edit_profile(request):

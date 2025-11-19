@@ -17,6 +17,7 @@ echo ""
 # Ask for confirmation
 read -p "$(echo -e "${YELLOW}Are you sure you want to flush the database? Type 'yes' to continue: ${RESET}")" CONFIRM
 
+
 if [[ "$CONFIRM" != "yes" ]]; then
     echo -e "${RED}❌ Operation cancelled. Database not flushed.${RESET}"
     exit 1

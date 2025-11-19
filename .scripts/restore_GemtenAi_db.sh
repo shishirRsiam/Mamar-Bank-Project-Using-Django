@@ -18,7 +18,7 @@ echo -e "║    ${MAGENTA}Restoring every byte with love and care. 🐢💖     
 echo -e "╚════════════════════════════════════════════════════════════════════════╝${RESET}"
 echo ""
 
-sh ./scripts/clear_database.sh
+sh ./.scripts/clear_database.sh
 
 docker exec -i postgres psql -U postgres -d mamar_bank_db < dump.sql
 
