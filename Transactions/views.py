@@ -5,7 +5,7 @@ from .models import Transaction, Loan, B2B
 from datetime import datetime, timedelta
 from decimal import Decimal
 from . import sent_email
-    
+from Mamar_Bank_Project.helper import Helper
 
 
 def home(request):
@@ -248,7 +248,7 @@ def report(request):
             
     if not request.user.is_superuser:
         check_daily_bonus(request.user.id)
-    Transactions = request.user.transactions.all().order_by('-updated_at')
+    Transactions = Helper.get_user_transactions(request.user)
     context = {
         'transactions': Transactions,
     }

@@ -115,19 +115,18 @@ def profile(request):
 
     if not request.user.is_superuser:
         check_daily_bonus(request.user.id)
-    print(transactions)
     return render(request, 'profile.html', context)      
 
 
 def home(request):
     if request.user.is_authenticated:
-        if not request.user.is_superuser:
-            check_daily_bonus(request.user.id)
+        # if not request.user.is_superuser:
+        #     check_daily_bonus(request.user.id)
+        return profile(request)
         return render(request, 'base.html')
     
     # return render(request, 'profile.html', context)    
-    return profile(request)
-    # return render(request, 'home.html')
+    return render(request, 'home.html')
 
 
 

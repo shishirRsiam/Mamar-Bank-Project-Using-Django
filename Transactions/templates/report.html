@@ -10,6 +10,7 @@
         <p class="text-lg mt-2">Here is a detailed overview of your all transactions.</p>
     </div>
 
+    {% if user.account %}
     <!-- Account Summary Section -->
     <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
         <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 pb-2">Account Summary</h2>
@@ -24,6 +25,8 @@
             <p class="text-gray-500 mt-4">No account information available.</p>
         {% endif %}
     </div>
+    {% endif %}
+
 
     <div class="flex flex-col items-center space-y-6">
         <!-- Date Filter Inputs -->
