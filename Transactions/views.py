@@ -81,8 +81,6 @@ def withdrow(request):
     
     if request.method == 'POST':
         print("&&&"*30)
-        # send_welcome_email.delay(1)
-        print("&&&"*30)
         amount = request.POST['amount']
         description = request.POST['description']
         print("Withdrawal Amount:", amount)
@@ -161,6 +159,10 @@ def sent_money(request):
     check_daily_bonus(request.user.id)
     return render(request, 'sent_money.html', context)
 
+
+
+
+
 def loan(request):
     context = {}
     if not request.user.is_authenticated:
@@ -184,8 +186,8 @@ def loan(request):
             )
             loan.save()
 
-            sent_email.sent_loan_request_email_to_user(loan)
-            sent_email.sent_loan_request_email_to_admin(loan)
+            loan_task.delay(loan.id)
+            
             return redirect('report')
             
         context['error_msg'] = "Invalid amount"
@@ -200,8 +202,6 @@ def loan_request(request):
         return redirect('home')
     
     loan_request = Loan.objects.filter(transaction_type='Loan', status=False)
-
-    
 
     context = {
         'loan_request': loan_request,
