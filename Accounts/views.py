@@ -26,6 +26,8 @@ def sign_up(request):
     context = {
         'title': 'Sign Up',
     }
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
