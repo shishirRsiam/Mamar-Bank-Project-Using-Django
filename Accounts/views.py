@@ -8,7 +8,7 @@ from Transactions.models import Transaction
 from Transactions.tasks import check_daily_bonus
 
 from Mamar_Bank_Project.helper import Helper
-
+from Transactions import tasks
 
 def clear_redis(request):
     from django.core.cache import cache
@@ -205,7 +205,7 @@ def password_reset(request):
             request.user.set_password(new_password)
             request.user.save()
 
-            sent_email.sent_change_password_email(request.user)
+            tasks.change_password_task.delay(request.user.id)
             update_session_auth_hash(request, request.user)
             return redirect('profile')
     

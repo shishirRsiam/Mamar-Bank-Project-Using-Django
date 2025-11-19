@@ -52,6 +52,12 @@ def daily_bonus_task(transaction_id):
     sent_email.sent_daily_bonus_email(DailyBonus)
 
 
+@shared_task
+def change_password_task(user_id):
+    user = User.objects.get(id=user_id)
+    sent_email.sent_change_password_email(user)
+
+
 def check_daily_bonus(user_id):
     print()
 
