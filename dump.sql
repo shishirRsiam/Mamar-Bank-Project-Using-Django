@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict WYuTiebbcOLs4UtdGlanGifF2oTTLgZMG3IPzIL4007qg8dVO17Rw3cebOD6Bhz
+\restrict XksaAPwKXgNKJYRxGhmANUOAlLpbKTWT1GkUR38c5tthbPuFzCdFnocdxgVLbE3
 
 -- Dumped from database version 14.20 (Debian 14.20-1.pgdg13+1)
 -- Dumped by pg_dump version 14.20 (Debian 14.20-1.pgdg13+1)
@@ -426,6 +426,8 @@ ALTER TABLE public.django_session OWNER TO postgres;
 COPY public."Accounts_useraddress" (id, street_address, city, state, postal_code, user_id) FROM stdin;
 1	\N	\N	\N	\N	2
 2	\N	\N	\N	\N	3
+3	\N	\N	\N	\N	4
+4	\N	\N	\N	\N	5
 \.
 
 
@@ -435,7 +437,9 @@ COPY public."Accounts_useraddress" (id, street_address, city, state, postal_code
 
 COPY public."Accounts_userbankaccount" (id, nid_number, birth_day, account_no, balance, account_type, gender, user_id) FROM stdin;
 2	\N	\N	14052004003	1.01	Savings	Male	3
-1	\N	\N	14052004002	1590.00	Savings	Male	2
+4	\N	\N	14052004005	2099.00	Business	Male	5
+1	\N	\N	14052004002	456.00	Savings	Male	2
+3	\N	\N	14052004004	1335.00	Savings	Male	4
 \.
 
 
@@ -448,6 +452,10 @@ COPY public."Transactions_b2b" (transaction_ptr_id, receiver_id, sender_id, b2b_
 65	3	2	t
 67	2	3	t
 68	2	3	t
+74	5	4	t
+75	5	4	t
+76	4	2	t
+77	4	2	t
 \.
 
 
@@ -535,6 +543,15 @@ COPY public."Transactions_transaction" (id, transaction_type, amount, descriptio
 66	Loan	143.00	\N	f	2025-11-18 18:41:06.798839+00	2025-11-18 18:41:06.818386+00	Y5Z0E1B1M8P	2	\N	\N
 67	Sent Money	123.00		t	2025-11-18 19:20:33.755914+00	2025-11-18 19:20:33.768886+00	K1C7Y4I2W4Z	3	1.01	\N
 68	Receive Money	123.00		t	2025-11-18 19:20:33.774262+00	2025-11-18 19:20:33.778153+00	K1C7Y4I2W4Z	2	1590.00	\N
+69	Daily Bonus	100.00	Daily Check Bonus	t	2025-11-18 20:12:43.066664+00	2025-11-18 20:12:43.068644+00	L1X8L4V0N4Z	2	1690.00	\N
+70	SignUp Bonus	1000.00	Account created successfully.  Account number: 14052004004	t	2025-11-18 20:15:39.105898+00	2025-11-18 20:15:39.107696+00	C6A3J1J0W2O	4	1000.00	\N
+71	Daily Bonus	100.00	Daily Check Bonus	t	2025-11-18 20:16:04.25499+00	2025-11-18 20:16:04.256583+00	K5J9J9K4G1L	4	1100.00	\N
+72	SignUp Bonus	1000.00	Account created successfully.  Account number: 14052004005	t	2025-11-18 20:19:14.456738+00	2025-11-18 20:19:14.458444+00	A6Z1H6Y3X0B	5	1000.00	\N
+73	Daily Bonus	100.00	Daily Check Bonus	t	2025-11-18 20:19:43.872704+00	2025-11-18 20:19:43.874573+00	V5I9J7L8J2H	5	1100.00	\N
+74	Sent Money	999.00	gift for you	t	2025-11-18 20:21:28.966911+00	2025-11-18 20:21:28.970113+00	A5S4T2C2K2L	4	101.00	\N
+75	Receive Money	999.00	gift for you	t	2025-11-18 20:21:28.973189+00	2025-11-18 20:21:28.975753+00	A5S4T2C2K2L	5	2099.00	\N
+76	Sent Money	1234.00	Miss Me?	t	2025-11-19 05:09:07.709745+00	2025-11-19 05:09:07.713771+00	Q3S9O4S4M4K	2	456.00	\N
+77	Receive Money	1234.00	Miss Me?	t	2025-11-19 05:09:07.716789+00	2025-11-19 05:09:07.719755+00	Q3S9O4S4M4K	4	1335.00	\N
 \.
 
 
@@ -612,8 +629,10 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
 3	pbkdf2_sha256$1000000$W07mHC4FxYD6zsQMIhV0Xa$FvW28uu1xepg+ZPs49WGsDr/+cQ7O7X/lsM6A0F8GL4=	2025-11-18 17:00:37.496891+00	f	mydrive	My Drive	Test	dmy87125@gmail.com	f	t	2025-11-18 16:58:32.296824+00
-1	pbkdf2_sha256$1000000$ncxmv0spXokKG9hwnwOsk5$XuMI6BkZmGf6W087e0G3hOpatauQkfMiRO2jICqwN3Y=	2025-11-18 19:12:20.009434+00	t	admin	Admin	Sishir	shishir.siam01@gmail.com	t	t	2025-11-18 13:35:15+00
-2	pbkdf2_sha256$1000000$Dembq7jlTGXFYkzFdfzBxv$y0hNzLtAMT79sk4C10/dear32eK6CCfrZTCRxrZGkH0=	2025-11-18 19:15:54.018804+00	f	hasmiorradiya	Hasmi	Or Radiya	hasmiorradiya@gmail.com	f	t	2025-11-18 13:39:13.844574+00
+5	pbkdf2_sha256$1000000$JQSyAwhdLiaKkzj9rY2stS$dByu5K9unGgYMz1xH1mKfnAvVExK/S2cgxMmidfwJ8k=	2025-11-18 20:23:45.599654+00	f	sakin69	সা কি 	ন	sakinspecial@gmail.com	f	t	2025-11-18 20:19:14.198537+00
+4	pbkdf2_sha256$1000000$UrRnkY4bs8Rphz2xCFOyw8$sSSLvl4l0Mf6E23wxHy5NRbqSc/oR+Mq5zR5jInu6L4=	2025-11-18 20:51:34.480729+00	f	shishirrsiam	Md. Sishir Rahman	Siam	shishir.siam01@gmail.com	f	t	2025-11-18 20:15:38.881446+00
+1	pbkdf2_sha256$1000000$ncxmv0spXokKG9hwnwOsk5$XuMI6BkZmGf6W087e0G3hOpatauQkfMiRO2jICqwN3Y=	2025-11-18 20:53:22.361045+00	t	admin	Admin	Sishir	shishir.siam01@gmail.com	t	t	2025-11-18 13:35:15+00
+2	pbkdf2_sha256$1000000$Dembq7jlTGXFYkzFdfzBxv$y0hNzLtAMT79sk4C10/dear32eK6CCfrZTCRxrZGkH0=	2025-11-18 20:53:35.879185+00	f	hasmiorradiya	Hasmi	Or Radiya	hasmiorradiya@gmail.com	f	t	2025-11-18 13:39:13.844574+00
 \.
 
 
@@ -711,6 +730,8 @@ COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 kfsv9lw5yd6gt5pglewo2sojsucrx767	.eJxVjDkOwjAURO_iGlleY0NJzxmsv9g4gBwpTirE3UmkFNBMMe_NvEWCdalp7XlOI4uLsOL02yHQM7cd8APafZI0tWUeUe6KPGiXt4nz63q4fwcVet3WFC2zLs5kZZyKAwL6M3swqJ1C4i3JUg6BwA7AJZuIGlXxyjoINorPF_Q2ODw:1vLP4H:W-Uv5N3TQVSmTBqZpHq-hRNGuAteGgjCjaxNdzrpKa8	2025-12-02 17:00:37.501732+00
 0f1c58q8ksvypyp2lb5koh95zee03p53	.eJxVjEEOgjAQRe_StWmctrSDS_ecgcx0RosaSCisjHcXEha6_e-9_zY9rUvp16pzP4i5GDCn340pP3XcgTxovE82T-MyD2x3xR602m4SfV0P9--gUC1b7aLP3AQIkVlUEFBYs0chaXhDZ3HcJh9ZkwPxKi4RYmgRbh4aBPP5AgFMOC4:1vLR7k:c1d2PwDjxZARekE9DwDvNRDQ-tTGoxqKokPtAHkAqzs	2025-12-02 19:12:20.012492+00
 9il99j4ef3q7am9yqsc2ftlmvz9kigph	.eJxVjMsOwiAQRf-FtSG8HVy67zcQmAGpGkhKuzL-uzbpQrf3nHNfLMRtrWEbeQkzsQtT7PS7pYiP3HZA99hunWNv6zInviv8oINPnfLzerh_BzWO-q2LEUIUmYpHzJosWtICpYRzAqcskgWPRRUDoJxDpwCEFyZaD5pcdOz9AePaN1Q:1vLRBC:-HWvZ6ZAnCwKWEmGKgBRB5MK-mM0DD9OO5yTJmCaKlo	2025-12-02 19:15:54.021999+00
+me0byuq90rwx7i69rnwx1ip9olknsr3m	.eJxVjDsOwjAQBe_iGllex79Q0nMGa9de4wBypDipEHeHSCmgfTPzXiLitta4dV7ilMVZWHH63QjTg9sO8h3bbZZpbusykdwVedAur3Pm5-Vw_w4q9vqtgwsjB6O0tVCSR7CkEaCoBAYhDaMrIXlj2A8qeOKsrXbOqpwJwBGK9wfCsDc5:1vLSEr:-IJYY0F61o2qMRGYJ17mn0H1H-u0lbwWIebLUJ0awuw	2025-12-02 20:23:45.601398+00
+r9qd69mcrii62wfhq080d9uo1huvgh4h	.eJxVjMsOwiAQRf-FtSG8HVy67zcQmAGpGkhKuzL-uzbpQrf3nHNfLMRtrWEbeQkzsQtT7PS7pYiP3HZA99hunWNv6zInviv8oINPnfLzerh_BzWO-q2LEUIUmYpHzJosWtICpYRzAqcskgWPRRUDoJxDpwCEFyZaD5pcdOz9AePaN1Q:1vLShj:GrFyNk6eOccPXVMI5FVwpwRb2QsycEjvBadpOBGQxxU	2025-12-02 20:53:35.884529+00
 \.
 
 
@@ -718,21 +739,21 @@ kfsv9lw5yd6gt5pglewo2sojsucrx767	.eJxVjDkOwjAURO_iGlleY0NJzxmsv9g4gBwpTirE3UmkFN
 -- Name: Accounts_useraddress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Accounts_useraddress_id_seq"', 2, true);
+SELECT pg_catalog.setval('public."Accounts_useraddress_id_seq"', 4, true);
 
 
 --
 -- Name: Accounts_userbankaccount_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Accounts_userbankaccount_id_seq"', 2, true);
+SELECT pg_catalog.setval('public."Accounts_userbankaccount_id_seq"', 4, true);
 
 
 --
 -- Name: Transactions_transaction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Transactions_transaction_id_seq"', 68, true);
+SELECT pg_catalog.setval('public."Transactions_transaction_id_seq"', 77, true);
 
 
 --
@@ -767,7 +788,7 @@ SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
 -- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.auth_user_id_seq', 3, true);
+SELECT pg_catalog.setval('public.auth_user_id_seq', 5, true);
 
 
 --
@@ -1271,5 +1292,5 @@ ALTER TABLE ONLY public.django_admin_log
 -- PostgreSQL database dump complete
 --
 
-\unrestrict WYuTiebbcOLs4UtdGlanGifF2oTTLgZMG3IPzIL4007qg8dVO17Rw3cebOD6Bhz
+\unrestrict XksaAPwKXgNKJYRxGhmANUOAlLpbKTWT1GkUR38c5tthbPuFzCdFnocdxgVLbE3
 
