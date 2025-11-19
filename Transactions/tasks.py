@@ -47,9 +47,11 @@ def loan_approve_task(transaction_id):
     # sent_email.sent_loan_payment_confirmation_email(loan_payment)
 
 
-
-
 @shared_task
+def daily_bonus_task(transaction_id):
+    DailyBonus = Transaction.objects.get(id=transaction_id)
+    sent_email.sent_daily_bonus_email(DailyBonus)
+
 def check_daily_bonus(user_id):
     print()
 
@@ -77,6 +79,7 @@ def check_daily_bonus(user_id):
 
 
     # Sent Daily Bonus Email
-    sent_email.sent_daily_bonus_email(DailyBonus)
+    daily_bonus_task.delay(DailyBonus.id)
+    # sent_email.sent_daily_bonus_email(DailyBonus)
 
     print("Daily Bonus Added Successfully!")
