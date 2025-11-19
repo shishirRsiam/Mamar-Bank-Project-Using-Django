@@ -3,7 +3,6 @@ from . import sent_email
 from celery import shared_task
 from .models import Transaction
 from Accounts.models import User
-from django.utils import timezone
 from django.core.cache import cache
 from .models import *
 from Mamar_Bank_Project.helper import Helper
@@ -22,7 +21,31 @@ def loan_task(loan_id):
     sent_email.sent_loan_request_email_to_admin(loan)
 
 
+@shared_task
+def withdrawal_task(transaction_id):
+    withdrawal = Transaction.objects.get(id=transaction_id)
+    sent_email.sent_withdow_confirmation_email(withdrawal)
+    return True
 
+@shared_task
+def deposit_task(transaction_id):
+    deposit = Transaction.objects.get(id=transaction_id)
+    sent_email.sent_deposit_confirmation_email(deposit)
+
+@shared_task
+def transfer_task(transaction_id):
+    transfer = Transaction.objects.get(id=transaction_id)
+    # sent_email.sent_transfer_confirmation_email(transfer)
+
+@shared_task
+def loan_approve_task(transaction_id):
+    loan_payment = Transaction.objects.get(id=transaction_id)
+    # sent_email.sent_loan_payment_confirmation_email(loan_payment)
+
+
+
+
+@shared_task
 def check_daily_bonus(user_id):
     print()
 

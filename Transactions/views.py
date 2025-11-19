@@ -98,7 +98,9 @@ def withdrow(request):
                     after_transaction_balance=request.user.account.balance
                 )
                 Withdrawal.save()
-                sent_email.sent_withdow_confirmation_email(Withdrawal)
+
+                tasks.withdrawal_task.delay(Withdrawal.id)
+                # sent_email.sent_withdow_confirmation_email(Withdrawal)
                 return redirect('report')
             
             context['error_msg'] = "Insufficient balance! You can withdraw only $" + str(request.user.account.balance - 1)
