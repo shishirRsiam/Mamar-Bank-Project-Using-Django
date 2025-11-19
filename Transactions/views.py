@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 from . import sent_email
 from Mamar_Bank_Project.helper import Helper
-
+from . import tasks
 
 def home(request):
     if request.user.is_authenticated:
@@ -165,6 +165,9 @@ def loan(request):
     context = {}
     if not request.user.is_authenticated:
         return redirect('login')
+    
+    tasks.send_welcome_email.delay(1)
+
     if request.method == 'POST':
         amount = request.POST['amount']
         purpose = request.POST['purpose']
@@ -197,6 +200,8 @@ def loan_request(request):
         return redirect('home')
     
     loan_request = Loan.objects.filter(transaction_type='Loan', status=False)
+
+    
 
     context = {
         'loan_request': loan_request,

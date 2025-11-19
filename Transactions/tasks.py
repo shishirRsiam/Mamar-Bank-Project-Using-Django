@@ -15,7 +15,7 @@ def send_welcome_email(user_id):
     print('(-)'*30)
     print('send_welcome_email')
     print(f"User ID: {user_id}\n" * 10)
-    pass
+    return True
 
 def get_next_day_remain_minute():
     # 1. Get the current local timezone-aware time

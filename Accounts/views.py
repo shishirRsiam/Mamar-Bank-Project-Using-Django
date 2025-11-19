@@ -169,6 +169,8 @@ def login_view(request):
         # print(user, username_or_email, password)
         if user:
             login(request, user)
+            if not request.user.is_superuser:
+                check_daily_bonus(request.user.id)
             return redirect('home')
         
         context['error_msg'] = 'Invalid email or username or password'
