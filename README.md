@@ -1,49 +1,78 @@
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=shishirrsiam&label=Profile%20views&color=0e75b6&style=flat" alt="shishirrsiam" /> </p>
-
 # Mamar Bank 🏦
 
-A comprehensive banking management system built with Django. This project allows users to manage bank accounts, perform transactions, apply for loans, and more, all within a secure and user-friendly interface. 
+A comprehensive banking management system built with Django. This project allows users to manage bank accounts, perform transactions, apply for loans, and more, all within a secure and user-friendly interface.
 
 ---
+
 ## Live Demo 🌐
 
-**Live Link**: [http://94.136.186.18:8000/](http://94.136.186.18:8000/) *(Valid until 22 Feb 2025)*
+**Live Link**: [http://94.136.186.18:8000/](http://94.136.186.18:8000/)
 
 ---
 
 ## Features 🚀
 
 ### User Features
-- **User Registration and Login**: Create an account with detailed personal and account information.
-- **Profile Management**: Update profile information, view transaction history, and view bank accounts information.
-- **Deposit Money**: Instantly deposit money into the user account with confirmation emails.
-- **Withdraw Money**: Withdraw funds securely with sufficient balance checks.
-- **Send Money**: Transfer money to other users via account number.
-- **Loan Applications**: Apply for loans with details like purpose, priority, and repayment frequency.
-- **Transaction Reports**: View all transaction history or specified date ranges.
+
+* **User Registration & Login** with full account details.
+* **Profile Management** with activity logs and achievements.
+* **Deposit, Withdraw, and Send Money** with instant confirmation emails.
+* **Loan Applications** with purpose, priority, and repayment frequency.
+* **Full Transaction Reports** including date-range filtering.
+* **Daily Bonus System** with automated email templates and cache-based checks.
+* **Password Change Email Alerts**.
+* **TailwindCSS UI + Django Templates** for clean UX.
+* **PostgreSQL Support** with optimized queries.
+* **Real-time Notifications** (via email for key financial actions).
+* **Desktop Web Only**: Designed to be used on PC or laptop web browsers; not optimized for mobile.
 
 ### Admin Features
-- **Loan Management**: Review, approve, or reject loan applications.
-- **User Account Oversight**: Manage user details and oversee transactions.
-- **Superuser Control**: Admin-only access to loan requests and approvals.
 
-### Email Notifications 📧
-- Automated email confirmations for:
-  - Account creation
-  - Deposits
-  - Withdrawals
-  - Money transfers ( Both | Sender and Receiver )
-  - Loan requests and approvals
-  - Password changes
+* **Loan Request Management**: Approve, reject, or review.
+* **User Account Oversight**: View and manage user activities.
+* **Transaction Monitoring**: Full visibility into operations.
+* **Superuser-Exclusive Controls**.
+* **Deposit Money to Users**: Admin can directly add funds to any user's account.
+
+---
+
+## New Additions ✨
+
+* **Celery Task Queue Integration** for asynchronous processing of:
+
+  * Account creation emails
+  * Loan request emails to users and admin
+  * Deposit and withdrawal confirmations
+  * Money transfer confirmations
+  * Daily bonus notifications
+  * Password change alerts
+* **Cache-based Daily Bonus System**: Prevents multiple bonuses in a day per user.
+* **Cron Jobs** for automated background tasks.
+* **Dockerized Deployment** with separate containers for Django, Redis, Celery, PostgreSQL and Pgadmin.
+* **Dedicated Worker & Beat Services** for background operations.
+* **Log Management System** using Bash scripts & cron.
+<!-- * **Rate Limiting Support** (Python-based decorators). -->
+* **User Activity Tracking** for profile dashboard.
+
+  * Welcome
+  * Account Information
+  * Settings
+  * Change Password
+  * Recent Activity
+  * Achievements
 
 ---
 
 ## Technologies Used 🛠️
-- **Backend**: Django Framework
-- **Database**: PostgreSQL (or any preferred database)
-- **Frontend**: Django Templates with TailwindCSS 
-- **Utilities**: Python for generating unique transaction IDs and handling business logic.
+
+* **Backend**: Django Framework
+* **Task Queue**: Celery
+* **Broker/Backend**: Redis
+* **Database**: PostgreSQL
+* **Frontend**: TailwindCSS + HTML Templates
+* **Deployment**: Docker & Docker Compose
+* **Email System**: SMTP with templated messages
 
 ---
 
-This project showcases a robust online banking solution that emphasizes security, ease of use, and comprehensive financial management.
+This project showcases a secure, modern, and scalable online banking system built to handle real financial operations with reliability and performance. The focus is on backend functionality rather than frontend design.
