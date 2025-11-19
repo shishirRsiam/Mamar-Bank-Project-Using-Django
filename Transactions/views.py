@@ -173,8 +173,6 @@ def loan(request):
     if not request.user.is_authenticated:
         return redirect('login')
     
-    tasks.send_welcome_email.delay(1)
-
     if request.method == 'POST':
         amount = request.POST['amount']
         purpose = request.POST['purpose']
