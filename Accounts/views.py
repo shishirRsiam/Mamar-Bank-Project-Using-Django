@@ -110,6 +110,7 @@ def profile(request):
     transactions = Helper.get_user_transactions(request.user, max_transactions=10)
     # transactions = request.user.transactions.all().order_by('-updated_at')[:10]
     context = {
+        'user' : request.user,
         'transactions' : transactions,
     }
 

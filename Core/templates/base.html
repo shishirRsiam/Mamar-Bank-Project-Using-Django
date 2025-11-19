@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
         body {
             font-family: 'Poppins', sans-serif;
         }
     </style>
 </head>
+
 <body class="bg-gray-50 text-gray-700 min-h-screen flex flex-col">
     <!-- Navbar -->
     {% include 'navbar.html' %}
@@ -21,14 +24,25 @@
         {% block content %}
         <div class="text-center">
             <h2 class="text-3xl text-indigo-600 font-bold mb-4">Welcome to Mamar Bank!</h2>
-            <p class="text-lg text-gray-700">We’re here to help you with your financial needs. Explore our services today!</p>
+            <p class="text-lg text-gray-700">We’re here to help you with your financial needs. Explore our services
+                today!</p>
         </div>
         {% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-indigo-600 text-white text-center p-4">
+    <footer class="bg-indigo-600 text-white text-center p-2">
+        <!-- <p class="text-sm">Made by সাকিন & সিয়াম</p> -->
+        <p class="text-lg">
+            Made by
+            <a href="https://www.facebook.com/sakin" class="text-white-600 hover:underline" target="_blank"
+            rel="noopener">সাকিন</a>
+            &
+            <a href="https://www.facebook.com/shishirRsiam" class="text-white-600 hover:underline" target="_blank"
+            rel="noopener">সিয়াম</a>
+        </p>
         <p class="text-sm">&copy; 2025 Mamar Bank. All rights reserved.</p>
     </footer>
 </body>
+
 </html>
