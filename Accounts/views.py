@@ -48,6 +48,9 @@ def sign_up(request):
         }
         if password == confirm_password:
             print("User created successfully.")
+            data['error_msg'] = 'Email already exists.'
+            if User.objects.filter(email=email).exists():
+                return render(request, 'sign_up.html', data)
             if not User.objects.filter(username=username).exists():                
                 # Create user
                 user = User.objects.create_user(
