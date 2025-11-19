@@ -90,7 +90,7 @@ def sign_up(request):
                     after_transaction_balance=user.account.balance
                 ).save()
 
-                sent_email.sent_account_create_email(user)
+                tasks.account_create_task(user.id)
                 request.session['success_message'] = 'Account created successfully. Please log in.'
                 return redirect('login')
             

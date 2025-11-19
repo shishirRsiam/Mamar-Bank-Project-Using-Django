@@ -8,10 +8,9 @@ from .models import *
 from Mamar_Bank_Project.helper import Helper
 
 @shared_task
-def send_welcome_email(user_id):
-    return True
-
-
+def account_create_task(user_id):
+    user = User.objects.get(id=user_id)
+    sent_email.sent_account_create_email(user)
 
 
 @shared_task
@@ -83,11 +82,10 @@ def check_daily_bonus(user_id):
     DailyBonus.save()
 
 
-
     # Sent Daily Bonus Email
     daily_bonus_task.delay(DailyBonus.id)
     # sent_email.sent_daily_bonus_email(DailyBonus)
 
     print("Daily Bonus Added Successfully!")
-
     return True
+
