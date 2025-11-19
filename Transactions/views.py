@@ -154,8 +154,9 @@ def sent_money(request):
                         )
                         ReceiveMoney.save()
 
-                        sent_email.sent_sent_money_confirmation_email(SentMoney)
-                        sent_email.sent_receive_money_confirmation_email(ReceiveMoney)
+                        tasks.transfer_task.delay(SentMoney.id, ReceiveMoney.id)
+                        # sent_email.sent_sent_money_confirmation_email(SentMoney)
+                        # sent_email.sent_receive_money_confirmation_email(ReceiveMoney)
                         return redirect('report')
     
     check_daily_bonus(request.user.id)

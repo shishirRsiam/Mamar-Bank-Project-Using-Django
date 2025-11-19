@@ -33,8 +33,12 @@ def deposit_task(transaction_id):
     sent_email.sent_deposit_confirmation_email(deposit)
 
 @shared_task
-def transfer_task(transaction_id):
-    transfer = Transaction.objects.get(id=transaction_id)
+def transfer_task(sent_money_id, received_money_id):
+    SentMoney = B2B.objects.get(id=sent_money_id)
+    ReceiveMoney = B2B.objects.get(id=received_money_id)
+
+    sent_email.sent_sent_money_confirmation_email(SentMoney)
+    sent_email.sent_receive_money_confirmation_email(ReceiveMoney)
     # sent_email.sent_transfer_confirmation_email(transfer)
 
 @shared_task
