@@ -224,7 +224,9 @@ def approve_loan(request, loan_id):
     loan.user.account.save()
     loan.save()
     
-    sent_email.sent_loan_approve_email(loan)
+    tasks.loan_approve_task.delay(loan.id)
+    # sent_email.sent_loan_approve_email(loan)
+
     return redirect('loan_request')
 
 

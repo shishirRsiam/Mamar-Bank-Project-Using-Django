@@ -42,9 +42,9 @@ def transfer_task(sent_money_id, received_money_id):
     # sent_email.sent_transfer_confirmation_email(transfer)
 
 @shared_task
-def loan_approve_task(transaction_id):
-    loan_payment = Transaction.objects.get(id=transaction_id)
-    # sent_email.sent_loan_payment_confirmation_email(loan_payment)
+def loan_approve_task(loan_id):
+    loan = Loan.objects.get(id=loan_id)
+    sent_email.sent_loan_approve_email(loan)
 
 @shared_task
 def daily_bonus_task(transaction_id):
