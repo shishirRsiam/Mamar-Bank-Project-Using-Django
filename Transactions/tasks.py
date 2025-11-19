@@ -46,11 +46,11 @@ def loan_approve_task(transaction_id):
     loan_payment = Transaction.objects.get(id=transaction_id)
     # sent_email.sent_loan_payment_confirmation_email(loan_payment)
 
-
 @shared_task
 def daily_bonus_task(transaction_id):
     DailyBonus = Transaction.objects.get(id=transaction_id)
     sent_email.sent_daily_bonus_email(DailyBonus)
+
 
 def check_daily_bonus(user_id):
     print()
@@ -60,7 +60,7 @@ def check_daily_bonus(user_id):
     if cache.get(key):
         print("Daily Bonus Already Added!")
         print("Bonus Added At:", cache.get(key))
-        return
+        return False
     
     current_local_time, next_day_second_remain = Helper.get_cur_time_and_next_day_remain_second()
     cache.set(key, current_local_time, next_day_second_remain)
@@ -83,3 +83,5 @@ def check_daily_bonus(user_id):
     # sent_email.sent_daily_bonus_email(DailyBonus)
 
     print("Daily Bonus Added Successfully!")
+
+    return True
