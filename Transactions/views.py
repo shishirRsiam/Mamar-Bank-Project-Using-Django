@@ -61,7 +61,9 @@ def deposit(request):
                 after_transaction_balance=user.account.balance
             )
             Deposit.save()
-            sent_email.sent_deposit_confirmation_email(Deposit)
+
+            tasks.deposit_task.delay(Deposit.id)
+            # sent_email.sent_deposit_confirmation_email(Deposit)
             return redirect('report')
         
         context['error_msg'] = "Invalid amount"
