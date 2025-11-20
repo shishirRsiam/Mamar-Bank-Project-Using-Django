@@ -61,16 +61,16 @@ def check_daily_bonus(user_id):
     print()
 
     key = f'daily_bonus_{user_id}'
-    print(f"check_daily_bonus: {user_id}")
+    user = User.objects.get(id=user_id)
+    print(f"check_daily_bonus: @{user.username}: {key}")
     if cache.get(key):
-        print("Daily Bonus Already Added!")
-        print("Bonus Added At:", cache.get(key))
+        ttl = cache.ttl(key)
+        print(f"Daily Bonus already added at: {cache.get(key)} and Time Left: {ttl / 60} minutes")
         return False
     
     current_local_time, next_day_second_remain = Helper.get_cur_time_and_next_day_remain_second()
     cache.set(key, current_local_time, next_day_second_remain)
 
-    user = User.objects.get(id=user_id)
     user.account.balance += 100
     user.account.save()
     
@@ -83,7 +83,7 @@ def check_daily_bonus(user_id):
 
 
     # Sent Daily Bonus Email
-    daily_bonus_task.delay(DailyBonus.id)
+    # daily_bonus_task.delay(DailyBonus.id)
     # sent_email.sent_daily_bonus_email(DailyBonus)
 
     print("Daily Bonus Added Successfully!")
