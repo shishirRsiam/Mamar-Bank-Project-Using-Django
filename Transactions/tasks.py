@@ -7,6 +7,8 @@ from django.core.cache import cache
 from .models import *
 from Mamar_Bank.helper import Helper
 
+import time
+
 @shared_task
 def account_create_task(user_id):
     user = User.objects.get(id=user_id)
@@ -60,16 +62,25 @@ def change_password_task(user_id):
 def check_daily_bonus(user_id):
     print()
 
-    key = f'daily_bonus_{user_id}'
+    log_file_path = 'logs/deily_check_log.txt'
+
+    key = f"daily_bonus_{user_id}"
     user = User.objects.get(id=user_id)
-    print(f"check_daily_bonus: @{user.username}: {key}")
+    first_str = f"--> [{time.strftime('%Y-%m-%d %H:%M:%S')}] check_daily_bonus: @{user.username}: {key}"
+    with open(log_file_path, 'a', encoding='utf-8') as f:
+        f.write(first_str + '\n')
+    print(first_str)
+
     if cache.get(key):
         ttl = cache.ttl(key)
-        print(f"Daily Bonus already added at: {cache.get(key)} and Time Left: {ttl / 60} minutes")
+        second_str = f"Daily Bonus @{user.username} already added at: {cache.get(key)} and Time Left: {int((ttl / 60) / 60)} hours {int(ttl / 60) % 60} minutes"
+        print(second_str)
+        with open(log_file_path, 'a', encoding='utf-8') as f:
+            f.write(second_str + '\n\n')
         return False
     
     current_local_time, next_day_second_remain = Helper.get_cur_time_and_next_day_remain_second()
-    cache.set(key, current_local_time, next_day_second_remain)
+    cache.set(key, current_local_time.strftime('%Y-%m-%d %H:%M:%S'), next_day_second_remain)
 
     user.account.balance += 100
     user.account.save()
@@ -83,9 +94,12 @@ def check_daily_bonus(user_id):
 
 
     # Sent Daily Bonus Email
-    # daily_bonus_task.delay(DailyBonus.id)
+    daily_bonus_task.delay(DailyBonus.id)
     # sent_email.sent_daily_bonus_email(DailyBonus)
 
-    print("Daily Bonus Added Successfully!")
+    success_str = f"Daily Bonus @{user.username} Added Successfully!"
+    with open(log_file_path, 'a', encoding='utf-8') as f:
+        f.write(success_str + '\n\n')
+    print(second_str)
     return True
 
