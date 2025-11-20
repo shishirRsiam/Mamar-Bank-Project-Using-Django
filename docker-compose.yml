@@ -69,7 +69,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: worker
-    command: celery -A Mamar_Bank_Project worker --loglevel=info --pool=solo
+    command: celery -A Mamar_Bank worker --loglevel=info --pool=solo
     volumes:
       - .:/app
     depends_on:

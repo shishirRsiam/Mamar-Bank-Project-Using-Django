@@ -7,7 +7,7 @@ from Transactions import sent_email
 from Transactions.models import Transaction
 from Transactions.tasks import check_daily_bonus
 
-from Mamar_Bank_Project.helper import Helper
+from Mamar_Bank.helper import Helper
 from Transactions import tasks
 
 def clear_redis(request):

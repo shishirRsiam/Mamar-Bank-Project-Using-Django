@@ -5,7 +5,7 @@ from .models import Transaction
 from Accounts.models import User
 from django.core.cache import cache
 from .models import *
-from Mamar_Bank_Project.helper import Helper
+from Mamar_Bank.helper import Helper
 
 @shared_task
 def account_create_task(user_id):

@@ -5,7 +5,7 @@ from .models import Transaction, Loan, B2B
 from datetime import datetime, timedelta
 from decimal import Decimal
 from . import sent_email
-from Mamar_Bank_Project.helper import Helper
+from Mamar_Bank.helper import Helper
 from . import tasks
 
 def home(request):

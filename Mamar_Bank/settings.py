@@ -39,7 +39,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Mamar_Bank_Project.urls'
+ROOT_URLCONF = 'Mamar_Bank.urls'
 
 TEMPLATES = [
     {
@@ -59,7 +59,7 @@ TEMPLATES = [
 
 
 
-WSGI_APPLICATION = 'Mamar_Bank_Project.wsgi.application'
+WSGI_APPLICATION = 'Mamar_Bank.wsgi.application'
 
 
 # Database
