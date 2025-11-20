@@ -87,7 +87,7 @@ def check_daily_bonus(user_id):
     
     DailyBonus = Transaction.objects.create(
         transaction_type='Daily Bonus', user=user, 
-        amount=100, description="Daily Check Bonus", status=1,
+        amount=25, description="Daily Check Bonus", status=1,
         after_transaction_balance=user.account.balance
     )
     DailyBonus.save()
