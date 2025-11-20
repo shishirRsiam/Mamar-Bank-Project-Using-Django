@@ -83,7 +83,7 @@ def sign_up(request):
                     user_id=user.id, 
                 ).save()
 
-                amount = 1000
+                amount = 115
                 description = f'Account created successfully.  Account number: {user.account.account_no}'
 
                 Transaction.objects.create(

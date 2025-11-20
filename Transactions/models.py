@@ -17,7 +17,7 @@ class Transaction(models.Model):
     admin_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='admin_transactions', null=True, blank=True)
 
     transaction_type = models.CharField(max_length=50)
-    amount = models.DecimalField(max_digits=12, decimal_places=2, default=1000.00)
+    amount = models.DecimalField(max_digits=12, decimal_places=2, default=115.00)
     description = models.TextField(blank=True, null=True)
     status = models.BooleanField(default=0) # 0: pending, 1: completed
     after_transaction_balance = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)
